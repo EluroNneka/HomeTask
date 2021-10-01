@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
 
-class ProductList {
-  final String productImage;
-  final String productName;
-  final String form;
-  final String price;
-  final String weight;
+class ProductItem {
+   final String productImage;
+ final String productName;
+   final String form;
+   final double price;
+   final String weight;
+    int quantity;
 
 
-  ProductList(this.productImage, this.productName, this.form, this.price, this.weight);
+  ProductItem(
+      {this.productImage,
+      this.productName,
+      this.form,
+      this.price,
+      this.weight,
+      this.quantity});
 
 }
 
-List <ProductList> products = [
-  //ProductList(productImage, productName, form, price, weight)
-];
+
+class Product {
+  List<ProductItem> productItems;
+
+  Product({this.productItems});
+
+  void addProduct(ProductItem item){
+    productItems.add(item);
+  }
+
+  void removeProduct(ProductItem item){
+    productItems.add(item);
+  }
+}

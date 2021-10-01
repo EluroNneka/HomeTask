@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 class AppBars extends StatelessWidget{
   final String title;
-  final String? icon;
-  final String? icon1;
-  final String? icon2;
-  final IconData? lead;
-  final bool? search;
+  final String icon;
+  final String icon1;
+  final String icon2;
+  final IconData lead;
+  final bool search;
+  final Function tap;
 
-  AppBars({required this.title, this.icon, this.icon1, this.lead, this.search, this.icon2});
+  AppBars({this.title, this.icon, this.icon1, this.lead, this.search, this.icon2, this.tap});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class AppBars extends StatelessWidget{
             Text(title,
             style: TextStyle(
               fontSize: 20,
-              fontFamily: 'Proxima Nova Bold',
+              fontFamily: 'ProximaNova Bold',
                 color: Colors.white,
             ),),
                  Spacer(),
@@ -90,6 +91,8 @@ class AppBars extends StatelessWidget{
               textAlign: TextAlign.left,
               textAlignVertical: TextAlignVertical.bottom,
               keyboardType: TextInputType.text,
+              enabled: true,
+              onTap: (){tap();},
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),

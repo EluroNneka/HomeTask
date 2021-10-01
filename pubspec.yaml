@@ -18,11 +18,15 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.7.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
+
+  bloc:
+  flutter_bloc:
+  flutter_screenutil:
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -39,11 +43,11 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
  # fonts:
-  #  - family: Proxima Nova
+  #  - family: ProximaNova
      # fonts:
      #   - asset: assets/fonts/Proxima_Nova_Alt_Bold.otf
 
-    #- family: Proxima Nova
+    #- family: ProximaNova
      # fonts:
       #  - asset: assets/fonts/Proxima_Nova_Alt_Light.otf
 
