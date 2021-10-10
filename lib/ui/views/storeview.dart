@@ -54,10 +54,10 @@ class _StoreViewState extends State<StoreView> {
               body: Stack(
                   children: [
                     SingleChildScrollView(
-                      physics: NeverScrollableScrollPhysics(),
+                      //physics: NeverScrollableScrollPhysics(),
                       child: Container(
 
-                        height: 1500,
+                        height: 1300,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -106,7 +106,7 @@ class _StoreViewState extends State<StoreView> {
                             SizedBox(height: 10,),
                             Container(
                               padding: EdgeInsets.symmetric(horizontal: 20),
-                              height: 1000,
+                              height: 900,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.start,
@@ -185,7 +185,7 @@ class _StoreViewState extends State<StoreView> {
                                     ),),
                                   SizedBox(height: 10,),
 
-                                  Expanded(
+                                  Container(
                                     child: GridView.builder(
                                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                                           crossAxisCount: 2,
@@ -202,7 +202,7 @@ class _StoreViewState extends State<StoreView> {
                                             Navigator.of(context).push(
                                               MaterialPageRoute(builder: (_) =>
                                                   BlocProvider.value(value: BlocProvider.of<StoreBloc>(
-                                                    context)..add(AddingToCartEvent()),
+                                                    context),
                                                   child: ProductDetailView(productItem: productItem[index]),))
                                                 );
                                           },
@@ -318,7 +318,8 @@ class _StoreViewState extends State<StoreView> {
                 ),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
-                  BlocProvider.value(value: BlocProvider.of<StoreBloc>(context),
+                  BlocProvider.value(value: BlocProvider.of<StoreBloc>(context)
+                    ..add(AddedToCartEvent(cartItem: cartItem)),
                       child: CartView(),
                   ),),);
                   },

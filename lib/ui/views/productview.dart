@@ -99,7 +99,7 @@ class _ProductDetailViewState extends State<ProductDetailView> {
                                     color: Colors.blueGrey ,
                                   ),
                                 textAlign: TextAlign.center,),
-                                Text('Emzor Pharmaceuticals',style: TextStyle(
+                                Text(widget.productItem.manu,style: TextStyle(
                                   fontSize: 12,
                                   color: Colors.blueGrey ,
                                 ),
@@ -212,14 +212,14 @@ SizedBox(height: 20,),
                                   DetailItem(
                                     image: 'assets/images/pills.png',
                                     text: 'PACK SIZE',
-                                    text2: '8 X 12 tablets(96)',
+                                    text2: widget.productItem.size,
                                   ),
                                  SizedBox(height: 20),
 
                                   DetailItem(
                                     image: 'assets/images/pill.png',
                                     text: 'CONSTITUENTS',
-                                    text2: 'Paracetamol',
+                                    text2: widget.productItem.constituents,
                                   ),],
                                  ),
                               SizedBox(width: 60,),
@@ -228,7 +228,7 @@ SizedBox(height: 20,),
                                   DetailItem(
                                     image: 'assets/images/qr-code.png',
                                     text: 'PRODUCT ID',
-                                    text2: 'PRO26548856',
+                                    text2: widget.productItem.id,
                                   ),
                                   SizedBox(height: 20,),
                                   DetailItem(
@@ -244,7 +244,10 @@ SizedBox(height: 20,),
                           SizedBox(width: 20,),
 
                       SizedBox(height: 30,),
-                      Text('1 pack of Emzor Paracetamol(500mg) contains 8 units of 12 tablets',
+                      Text('1 pack of '+ widget.productItem.manu + ' '+ widget.productItem.productName
+                          +'('+widget.productItem.weight + ') '+'contains ' +
+                          widget.productItem.size.substring(0,1) +' units of '+
+                          widget.productItem.size.substring(4,14),
                         style: TextStyle(
                         fontSize: 14,
                         color: Colors.grey,
@@ -279,7 +282,7 @@ SizedBox(height: 20,),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children:[
-                                          Image.network('https://i1.wp.com/lifebackpharmacy.com/wp-content/uploads/2021/03/MB-Paracetamol-Tablets-8-x12.jpg?fit=225%2C225&ssl=1',width: 100,
+                                          Image.network(widget.productItem.productImage,width: 100,
                                             height: 100,),
                                           Container(
                                               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -288,11 +291,11 @@ SizedBox(height: 20,),
                                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                                                 children: [
-                                                  Text('Paracetamol'),
+                                                  Text(widget.productItem.productName),
                                                   SizedBox(height: 5,),
-                                                  Text('Tablet * 500mg'),
+                                                  Text(widget.productItem.form +' - '+ widget.productItem.weight),
                                                   SizedBox(height: 10,),
-                                                  Text('N 350'),],
+                                                  Text(widget.productItem.price.toString()),],
                                               )),
                                         ],
                                       ),
@@ -317,9 +320,11 @@ SizedBox(height: 20,),
                               productName: widget.productItem.productName,
                               form: widget.productItem.form,
                               quantity: widget.productItem.quantity,
+                              weight: widget.productItem.weight,
+
                             );
                             _cartItems.add(cartItem);
-                            BlocProvider.of<StoreBloc>(context)
+                           BlocProvider.of<StoreBloc>(context)
                             ..add(AddedToCartEvent(cartItem: _cartItems));
                             setState(() {
                               selected = true;
@@ -349,7 +354,8 @@ SizedBox(height: 20,),
                                   InkWell(
                                     onTap:(){
                                       Navigator.of(context).push(MaterialPageRoute(builder: (_) =>
-                                          BlocProvider.value(value: BlocProvider.of<StoreBloc>(context),
+                                          BlocProvider.value(value: BlocProvider.of<StoreBloc>(context)
+                                            ..add(AddedToCartEvent(cartItem: _cartItems)),
 
                                             child: CartView(),
                                           ),),);

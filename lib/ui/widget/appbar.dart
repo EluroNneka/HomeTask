@@ -38,7 +38,7 @@ class AppBars extends StatelessWidget{
               lead != null ? InkWell(
 
                 onTap: (){
-                  Navigator.of(context).pop();
+                  Navigator.of(context).pushNamed('/');
                 },
                 child: Icon(lead,color: Colors.white,) ,
               ): Container(),

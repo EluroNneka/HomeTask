@@ -17,11 +17,11 @@ class CartView extends StatefulWidget{
 class _CartViewState extends State<CartView> {
   List<ProductItem> cartItems;
 
-  double res = 0;
+
   double total = 0;
 
   void calculateAmount(List<ProductItem> list){
-
+    double res = 0;
     list.forEach((element) {
       res = res + element.price * element.quantity;
     });
@@ -91,31 +91,34 @@ class _CartViewState extends State<CartView> {
                                   setState(() {
                                     cartItems[index].quantity++;
                                     calculateAmount(cartItems);
-                                    cartItems.add(cartItems[index]);
+                                   // cartItems.add(cartItems[index]);
                                   });
                                 },
                                 remove: (){
                                   setState(() {
                                     if(state is InitStoreState){
                                       state.cart.productItems.removeAt(index);
+                                      calculateAmount(cartItems);
                                       BlocProvider.of<StoreBloc>(context)..add(DeleteFromCartEvent(
                                         cartItem: state.cart.productItems
                                       ));
-                                      calculateAmount(cartItems);
+
                                     }
                                     else if(state is AddedToCartState){
                                       state.cartItem.removeAt(index);
+                                      calculateAmount(cartItems);
                                       BlocProvider.of<StoreBloc>(context)..add(DeleteFromCartEvent(
                                           cartItem: state.cartItem
                                       ));
-                                      calculateAmount(cartItems);
+
                                     }
                                     else if(state is DeleteFromCartState){
                                       state.cartItem.removeAt(index);
+                                      calculateAmount(cartItems);
                                       BlocProvider.of<StoreBloc>(context)..add(DeleteFromCartEvent(
                                           cartItem: state.cartItem
                                       ));
-                                      calculateAmount(cartItems);
+
                                     }
                                   });
                                 },
@@ -240,7 +243,7 @@ class CartItem extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(height: 15,),
               InkWell(
                 onTap: (){
                   remove();
@@ -249,7 +252,7 @@ class CartItem extends StatelessWidget {
                   children: [
                     Image.asset('assets/images/bin.png', height: 20, width: 15, color: AppColors.DROPURPLE,),
                     SizedBox(width: 10,),
-                  Text(' Delete',
+                  Text('Remove',
                   style: TextStyle(fontSize: 10,
                   color: AppColors.DROPURPLE),),
                   ],
