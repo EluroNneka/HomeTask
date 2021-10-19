@@ -186,70 +186,77 @@ class _StoreViewState extends State<StoreView> {
                                   SizedBox(height: 10,),
 
                                   Container(
-                                    child: GridView.builder(
-                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          crossAxisSpacing: 15,
-                                          mainAxisSpacing: 15,
-                                          mainAxisExtent: 200 ),
-                                      shrinkWrap: true,
-                                      scrollDirection: Axis.vertical,
-                                      itemCount: productItem == null ? 0 : productItem.length,
-                                      itemBuilder: (BuildContext context,
-                                          int index) {
-                                        return InkWell(
-                                          onTap: () {
-                                            Navigator.of(context).push(
-                                              MaterialPageRoute(builder: (_) =>
-                                                  BlocProvider.value(value: BlocProvider.of<StoreBloc>(
-                                                    context),
-                                                  child: ProductDetailView(productItem: productItem[index]),))
-                                                );
-                                          },
-                                          child: Container(
-                                            height: 500,
-                                            width: 250,
-                                            child: Card(
-                                              elevation: 2,
-                                              shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius
-                                                    .all(Radius.circular(10)),
-                                              ),
-                                              child: Column(
-                                               crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                    child: Container(
-                                                      width: 250,
-                                                      height: 200,
-                                                      child: Image.network(productItem[index].productImage,
-                                                        fit: BoxFit.fill,),
+                                    height: 500,
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          child: GridView.builder(
+                                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 2,
+                                                crossAxisSpacing: 15,
+                                                mainAxisSpacing: 15,
+                                                mainAxisExtent: 200 ),
+                                            shrinkWrap: true,
+                                            scrollDirection: Axis.vertical,
+                                            itemCount: productItem == null ? 0 : productItem.length,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return InkWell(
+                                                onTap: () {
+                                                  Navigator.of(context).push(
+                                                    MaterialPageRoute(builder: (_) =>
+                                                        BlocProvider.value(value: BlocProvider.of<StoreBloc>(
+                                                          context),
+                                                        child: ProductDetailView(productItem: productItem[index]),))
+                                                      );
+                                                },
+                                                child: Container(
+                                                  height: 500,
+                                                  width: 250,
+                                                  child: Card(
+                                                    elevation: 2,
+                                                    shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius
+                                                          .all(Radius.circular(10)),
                                                     ),
-                                                  ),
-                                                  Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: 10),
                                                     child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
-                                                        Text('${productItem[index].productName}'),
-                                                        SizedBox(
-                                                          height: 5,),
-                                                        Text('${productItem[index].form}' +" * "+ '${productItem[index].weight}'),
-                                                        SizedBox(
-                                                          height: 10,),
-                                                        Text('₦'+'${productItem[index].price}'),
+                                                        Expanded(
+                                                          child: Container(
+                                                            width: 250,
+                                                            height: 200,
+                                                            child: Image.network(productItem[index].productImage,
+                                                              fit: BoxFit.fill,),
+                                                          ),
+                                                        ),
+                                                        Container(
+                                                          padding: EdgeInsets.symmetric(horizontal: 10),
+                                                          child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children: [
+                                                              Text('${productItem[index].productName}'),
+                                                              SizedBox(
+                                                                height: 5,),
+                                                              Text('${productItem[index].form}' +" * "+ '${productItem[index].weight}'),
+                                                              SizedBox(
+                                                                height: 10,),
+                                                              Text('₦'+'${productItem[index].price}'),
+                                                            ],
+                                                          ),
+                                                        ),
                                                       ],
                                                     ),
+
+
                                                   ),
-                                                ],
-                                              ),
+                                                ),
+                                              );
+                                            },
 
-
-                                            ),
                                           ),
-                                        );
-                                      },
-
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ],
