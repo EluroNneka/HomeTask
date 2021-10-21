@@ -42,14 +42,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
- # fonts:
-  #  - family: ProximaNova
-     # fonts:
-     #   - asset: assets/fonts/Proxima_Nova_Alt_Bold.otf
-
-    #- family: ProximaNova
-     # fonts:
-      #  - asset: assets/fonts/Proxima_Nova_Alt_Light.otf
+#  fonts:
+#    - family: ProximaNova
+#      fonts:
+#        - asset: assets/fonts/ProximaNova-Black.otf
+#
+#    - family: ProximaNova
+#      fonts:
+#        - asset: assets/fonts/ProximaNova-AltLight.otf
 
 
 
